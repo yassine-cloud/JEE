@@ -5,27 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SingletonConnection {
-	private static Connection con;
-	
-	
-	public static Connection getCon() {
-		return con;
-	}
+    private static Connection con;
 
+    static {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tpjee", "root", "");
+            System.out.println("Database connection established successfully.");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Failed to load JDBC driver: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Failed to establish database connection: " + e.getMessage());
+        }
+    }
 
-	static {
-	try {
-		Class.forName("com.mysql.jdbc.Driver");
-		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/tpjee","root","");
-		System.out.print("success");
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	}
-
+    public static Connection getCon() {
+        return con;
+    }
 }
 

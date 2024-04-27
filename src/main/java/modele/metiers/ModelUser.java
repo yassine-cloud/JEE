@@ -15,7 +15,11 @@ public class ModelUser {
 	{
 		utilisateur u=null;
 		u=d.getUser(u1.getEmail());
-		return(u!=null);
+		if( u!=null && u.getEmail().equals(u1.getEmail()) && u.getPassword().equals(u1.getPassword()) )
+			return true;
+		else
+			return false;
+		// return(u!=null);
 	}
 
 }
