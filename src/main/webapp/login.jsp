@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="title">Se connecter</div>
-<form action="<%= request.getContextPath()  %>/toto.php" method="post">
+<form action="<%= request.getContextPath()  %>/login" method="post">
 	<div >
         <div>
 		 	 <input type="text" id="email"

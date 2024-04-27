@@ -20,11 +20,13 @@ public class DaoUser {
             }
             PreparedStatement ps = con.prepareStatement("SELECT * FROM user WHERE email=?");
             ps.setString(1, email);
+            System.out.println("trying to connect to "+email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 u.setId(rs.getInt(1));
                 u.setEmail(rs.getString(3));
                 u.setPassword(rs.getString(4));
+                System.out.println("catched account that have "+u.getEmail()+ "  "+ u.getPassword());
             }
             rs.close();
             ps.close();
@@ -32,14 +34,14 @@ public class DaoUser {
             // Handle SQL exception
             e.printStackTrace();
         } finally {
-            try {
+            /*try {
                 if (con != null) {
                     con.close();
                 }
             } catch (SQLException e) {
                 // Handle close exception
                 e.printStackTrace();
-            }
+            }*/
         }
         if(u.getEmail() != null)
         	return u;
